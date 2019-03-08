@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+        meubel-service:
+                build:  ./meubel
+                volumes:
+                        - ./meubel:/usr/src/app
+                ports:
+                        - 13899:80
+        website:
+                image: php:apache
+                volumes:
+                        - ./website:/var/www/html
+                ports:
+                        - 13898:80
+                depends_on:
+                        - meubel-service
